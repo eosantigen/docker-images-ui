@@ -1,11 +1,3 @@
-/*
-TODO: change to recall for changes or add a refresh button for image changes (or not).
-TODO: Add registries configuration. (overall you need 3 client objects)
-TODO: Keep localhost as an option and add it to the select registries button.
-TODO: Catching the exception on deletion should raise a FORCE option
-TODO: setDeleteLocalhostImage(), setDeleteDevImage(), setDeleteProdImage(), getLocalhostImage(), getDevImage()
-TODO: getProdImage(), localhostConnection(), devConnection(), prodConnection()
- */
 import com.github.dockerjava.api.DockerClient;
 import com.github.dockerjava.api.exception.DockerException;
 import com.github.dockerjava.api.model.Image;
