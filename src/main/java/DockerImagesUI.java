@@ -73,8 +73,11 @@ public class DockerImagesUI {
 
         public void setImageNames (List<Image> localhostImages) {
             for (Image image : localhostImages) {
-                System.out.format("\t Image %s (%s)\n", image.getRepoTags()[0].replaceAll("(\\<|\\>)", "").replaceAll("(\\[|\\])", ""), image.getId());
-                imageNames.add(String.valueOf(image.getRepoTags()[0]).replaceAll("(^\\[|\\]$)", "").replaceAll("(\\<|\\>)", ""));
+                //System.out.format("\t Image %s (%s)\n", image.getRepoTags()[0].replaceAll("(\\<|\\>)", "").replaceAll("(\\[|\\])", ""), image.getId());
+                //imageNames.add(String.valueOf(image.getRepoTags()[0]).replaceAll("(^\\[|\\]$)", "").replaceAll("(\\<|\\>)", ""));
+                System.out.format("\t Image %s (%s)\n", image.getRepoDigests()[0].replaceAll("(\\<|\\>)", "").replaceAll("(\\[|\\])", ""), image.getRepoTags()[0]);
+                // TODO - JUST A TEST - the following must be formatted to be displayed elsewhere and not added to imageNames, break it up because onDelete it  will fail.
+		imageNames.add(String.valueOf(image.getRepoDigests()[0]).replaceAll("(^\\[|\\]$)", "").replaceAll("(\\<|\\>)", "") + " => " + String.valueOf(image.getRepoTags()[0]));
 //                if (imageNames.size() > 0) {
 //                    imageNames.add(Arrays.toString(image.getRepoTags()).replaceAll("(^\\[|\\]|$)", ""));
 //                } else {
@@ -176,9 +179,9 @@ public class DockerImagesUI {
             selectionModel.setSelectionMode(SelectionMode.SINGLE);
             ObservableList<String> selectedImages = selectionModel.getSelectedItems();
 
-            imageTableColumn.setPrefWidth(975);
+            imageTableColumn.setPrefWidth(1920);
 
-            imageTable.setPrefSize(975,900);
+            imageTable.setPrefSize(1920,900);
             imageTable.setPlaceholder(new Label("Start your local Docker and select a registry to fetch images..."));
 
             selectedImages.addListener((ListChangeListener<? super String>) (change) -> {
@@ -235,7 +238,7 @@ public class DockerImagesUI {
             initializeMenu();
             initializeTables();
 
-            Scene scene = new Scene(borderPane, 975, 840);
+            Scene scene = new Scene(borderPane, 1920, 840);
             return scene;
         }
     }
