@@ -58,7 +58,6 @@ public class DockerImagesUI {
             DockerHttpClient.Request request = DockerHttpClient.Request
                     .builder()
                     .method(DockerHttpClient.Request.Method.GET)
-                    .method(DockerHttpClient.Request.Method.GET)
                     .path("/_ping")
                     .build();
 
