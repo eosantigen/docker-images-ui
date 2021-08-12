@@ -1,0 +1,42 @@
+// All the following is necessary to create a fatJar which can be executed with the
+// java -jar command, on its own. Otherwise, the line "from {..." may be commented out.
+
+plugins {
+	id 'application'
+    	id 'org.openjfx.javafxplugin' version '0.0.10'
+}
+
+javafx {
+    	version = '13'
+    	modules = ['javafx.controls']
+}
+
+/*configurations {
+	DockerImagesUI
+}*/
+
+dependencies {
+//	compileClasspath 'com.microsoft.azure:azure-mgmt-containerregistry:1.30.0'
+//	compileClasspath 'com.github.docker-java:docker-java-core:3.2.5'
+//	compileClasspath 'com.github.docker-java:docker-java-transport-httpclient5:3.2.5'
+	implementation 'com.microsoft.azure:azure-mgmt-containerregistry:1.30.0'
+	implementation 'com.github.docker-java:docker-java-core:3.2.5'
+	implementation 'com.github.docker-java:docker-java-transport-httpclient5:3.2.5'
+}
+
+repositories {
+	mavenCentral()
+}
+
+mainClassName = "DockerImagesUI"
+
+jar {
+	manifest { attributes "Main-Class": "$mainClassName" }
+
+	from { configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+
+	exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'
+
+	duplicatesStrategy(DuplicatesStrategy.WARN)
+
+}
