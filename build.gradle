@@ -2,12 +2,14 @@
 // java -jar command, on its own. Otherwise, the line "from {..." may be commented out.
 
 plugins {
+
 	id 'application'
-    	id 'org.openjfx.javafxplugin' version '0.0.10'
+        id "org.javamodularity.moduleplugin" version "1.8.10"
+        id 'org.openjfx.javafxplugin' version '0.0.12'
 }
 
 javafx {
-    	version = '13'
+    	version = '17'
     	modules = ['javafx.controls']
 }
 
@@ -22,6 +24,7 @@ dependencies {
 	implementation 'com.microsoft.azure:azure-mgmt-containerregistry:1.30.0'
 	implementation 'com.github.docker-java:docker-java-core:3.2.5'
 	implementation 'com.github.docker-java:docker-java-transport-httpclient5:3.2.5'
+
 }
 
 repositories {
